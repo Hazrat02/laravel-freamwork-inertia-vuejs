@@ -433,4 +433,11 @@ function gs() {
 
     return $general;
 }
+function error($throw = 'Somthing went wrong!') {
+
+
+    $error=throw new \Exception($throw); 
+
+    return $error;
+}
 

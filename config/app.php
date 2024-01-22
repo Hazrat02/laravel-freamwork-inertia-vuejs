@@ -123,6 +123,7 @@ return [
 
     'key' => env('APP_KEY'),
     'dev_key' => env('DEV_KEY'),
+   
 
     'cipher' => 'AES-256-CBC',
 
@@ -154,7 +155,9 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
+    'dev_url' => env('DEV_URL'),
 
+    
     'providers' => [
 
         /*
