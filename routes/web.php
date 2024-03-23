@@ -23,15 +23,18 @@ Route::get('/clear', function () {
     return 'done';
 });
 
-
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
+        // 'privacyUrl' => route('privacy'), // Pass the URL of the privacy page
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
 });
+Route::get('/privacy', function () {
+    return Inertia::render('PrivacyPolicy');
+})->name('privacy');
 
 Route::middleware([
     'auth:sanctum',

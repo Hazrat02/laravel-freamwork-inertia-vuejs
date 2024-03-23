@@ -4,6 +4,7 @@ import { Link } from '@inertiajs/vue3';
 
 <template>
     <Link :href="'/'">
+        sdsds
         <svg
             class="w-16 h-16"
             viewBox="0 0 48 48"
