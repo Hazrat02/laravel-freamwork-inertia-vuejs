@@ -1,4 +1,6 @@
 <script setup>
+// import './../../bootstrap';
+import './../../../css/app.css';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import AuthenticationCard from '@/Components/AuthenticationCard.vue';
 import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
@@ -36,7 +38,7 @@ const submit = () => {
         <template #logo>
             <AuthenticationCardLogo />
         </template>
-
+     
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
         </div>
