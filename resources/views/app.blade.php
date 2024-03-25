@@ -9,7 +9,10 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
+        {{-- <noscript>
+            <link rel="stylesheet" href="/assets/adminassets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="/assets/adminassets/css/style.css">
+        </noscript> --}}
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

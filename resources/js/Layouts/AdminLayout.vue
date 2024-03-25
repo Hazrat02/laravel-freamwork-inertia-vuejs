@@ -1,14 +1,8 @@
 <script setup>
-// import './../bootstrap';
-import './../../css/admin.css';
+
 import { ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
-import ApplicationMark from '@/Components/ApplicationMark.vue';
-import Banner from '@/Components/Banner.vue';
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
-import NavLink from '@/Components/NavLink.vue';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+
 
 defineProps({
     title: String,
@@ -28,29 +22,6 @@ const logout = () => {
     router.post(route('logout'));
 };
 </script>
-
-<!-- <template>
-    <div>
-       
-
-        <Banner />
-
-        <div class="min-h-screen bg-gray-100">
-        
-      
-            <header v-if="$slots.header" class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    <slot name="header" />
-                </div>
-            </header>
-
- 
-            <main>
-                <slot />
-            </main>
-        </div>
-    </div>
-</template> -->
 
 
 
@@ -81,7 +52,14 @@ export default {
 </script>
 
 <template>
-     <Head :title="title" />
+     <Head :title="title" >
+        <!-- Preload critical CSS files -->
+    <!-- <link rel="preload" href="/assets/adminassets/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
+    <!-- <link rel="preload" href="/assets/adminassets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
+    
+    <!-- Fallback for browsers that do not support preload -->
+
+    </Head>
   <div class="container-fluid position-relative d-flex p-0">
     <!-- Spinner Start -->
     <!-- <div
@@ -137,8 +115,14 @@ export default {
           </div>
         </div>
         <div class="navbar-nav w-100">
-          <a href="/admin/dashboard" class="nav-item nav-link " :class="{ active: isActive('dashboard') }"
-            ><i class="fa fa-tachometer-alt me-2" ></i>Dashboard</a
+          <Link :href="'/dashboard'" class="nav-item nav-link " :class="{ active: isActive('dashboard') }"
+            ><i class="fa fa-tachometer-alt me-2" ></i>Dashboard</Link
+          >
+          <Link :href="'/'" class="nav-item nav-link" 
+            ><i class="fa fa-home me-2"></i>Home</Link
+          >
+          <Link :href="'/user'" class="nav-item nav-link"   :class="{ active: isActive('user') }"
+            ><i class="fa fa-user me-2"></i>User Manage</Link
           >
           <!-- <router-link to="/admin/dashboard" class="nav-item nav-link " :class="{
               active: this.$route.path === '/admin/dashboard',
@@ -147,14 +131,8 @@ export default {
           >
   
               
-          <router-link to="/" class="nav-item nav-link"
-            ><i class="fa fa-home me-2"></i>Home</router-link
-          >
-          <router-link to="/admin/user" class="nav-item nav-link"   :class="{
-              active: this.$route.path === '/admin/user',
-            }"
-            ><i class="fa fa-user me-2"></i>User Manage</router-link
-          >
+         
+          
           <router-link to="/admin/transaction" class="nav-item nav-link"   :class="{
               active: this.$route.path === '/admin/transaction',
             }"
@@ -219,4 +197,9 @@ export default {
 
   </div>
 </template>
+
+<style scoped>
+@import "./../../css/admin.css";
+/* @import "./../../assets/main.css"; */
+</style>
 

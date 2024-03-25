@@ -24,7 +24,7 @@ Route::get('/clear', function () {
 });
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    return Inertia::render('home', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         // 'privacyUrl' => route('privacy'), // Pass the URL of the privacy page
@@ -32,6 +32,11 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+Route::get('/user', function () {
+    return Inertia::render('Admin/UserManage', [
+
+    ]);
+})->name('user');
 Route::get('/privacy', function () {
     return Inertia::render('PrivacyPolicy');
 })->name('privacy');
@@ -41,6 +46,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    sleep('5');
     Route::get('/dashboard', function () {
         if (auth()->user()->role == '0') {
             return Inertia::render('Admin/Dashboard');

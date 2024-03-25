@@ -1,6 +1,6 @@
 <script setup>
 // import './../../bootstrap';
-import './../../../css/app.css';
+// import './../../../css/app.css';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import AuthenticationCard from '@/Components/AuthenticationCard.vue';
 import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
@@ -32,8 +32,9 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="Log in page" />
-
+    <Head title="Log in page" >
+    <link rel="stylesheet" href="./../../css/admin.css">
+     </Head>
     <AuthenticationCard>
         <template #logo>
             <AuthenticationCardLogo />

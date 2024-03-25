@@ -29,8 +29,9 @@ const logout = () => {
 
 <template>
     <div>
-        <Head :title="title" />
-
+        <Head :title="title" >
+            <link rel="stylesheet" href="./../../css/app.css">
+     </Head>
         <Banner />
 
         <div class="min-h-screen bg-gray-100">

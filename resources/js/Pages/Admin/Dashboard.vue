@@ -219,3 +219,7 @@ defineProps({
   }
 }
 </style>
+<style scoped>
+@import "./../../../css/admin.css";
+/* @import "./../../assets/main.css"; */
+</style>
