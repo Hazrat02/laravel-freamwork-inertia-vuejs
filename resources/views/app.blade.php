@@ -9,28 +9,48 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        {{-- <noscript>
-            <link rel="stylesheet" href="/assets/adminassets/css/bootstrap.min.css">
-            <link rel="stylesheet" href="/assets/adminassets/css/style.css">
-        </noscript> --}}
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
+        {{-- <link rel="stylesheet" href="{{asset('/assets/frontend')}}"> --}}
+        
+        {{-- <link rel="stylesheet" href="{{ $cssPath }}"> --}}
+        
+        <link rel="preload" href="{{asset('assets/frontend/fonts/riode115b.ttf?5gap68" as="font" type="font/woff2')}}" crossorigin="anonymous">
+        <link rel="preload" href="{{asset('assets/frontend/vendor/fontawesome-free/webfonts/fa-solid-900.woff2')}}" as="font" type="font/woff2"
+            crossorigin="anonymous">
+        <link rel="preload" href="{{asset('assets/frontend/vendor/fontawesome-free/webfonts/fa-brands-400.woff2')}}" as="font" type="font/woff2"
+            crossorigin="anonymous">
+        <script>
+            WebFontConfig = {
+                google: { families: ['Poppins:300,400,500,600,700,800'] }
+            };
+            (function (d) {
+                var wf = d.createElement('script'), s = d.scripts[0];
+                wf.src = './assets/frontend/js/webfont.js';
+                wf.async = true;
+                s.parentNode.insertBefore(wf, s);
+            })(document);
+        </script>
     
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
+    
+    
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/vendor/fontawesome-free/css/all.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets//frontend/vendor/animate/animate.min.css')}}">
+    
+        <!-- Plugins CSS File -->
+        <link rel="stylesheet" type="text/css" href="{{asset("assets/frontend/vendor/magnific-popup/magnific-popup.min.css")}}">
+        <link rel="stylesheet" type="text/css" href="{{asset("assets/frontend/vendor/owl-carousel/owl.carousel.min.css")}}">
+    
+        <link rel="stylesheet" type="text/css" href="{{asset("assets/frontend/vendor/sticky-icon/stickyicon.css")}}">
+    
+        <!-- Main CSS File -->
+        {{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/demo1.min.css')}}"> --}}
         <!-- Scripts -->
         @routes
-        @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
+        {{-- @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"]) --}}
+        @vite(['resources/js/app.js', 'resources/css/app.css'])
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
         @inertia
 
-        <script   src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

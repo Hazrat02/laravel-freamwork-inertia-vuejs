@@ -2,11 +2,24 @@
 
 import { ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
+import { usePage } from '@inertiajs/vue3'
 
+const page = usePage()
 
 defineProps({
     title: String,
 });
+
+        // // Access shared CSS path from Inertia
+        // const cssPath = page.props.cssPath;
+        // console.log(cssPath);
+        // // Create a new link element for the CSS file
+        // const link = document.createElement('link');
+        // link.rel = 'stylesheet';
+        // link.href = cssPath;
+
+        // // Append the link element to the head of the document
+        // document.head.appendChild(link);
 
 const showingNavigationDropdown = ref(false);
 
@@ -36,6 +49,7 @@ export default {
       sidebar: false,
       authUser: "",
       isAuthenticated: false,
+      loading: false,
     };
   },
 
@@ -48,22 +62,43 @@ export default {
     }
 
   },
+  mounted() {
+    // Listen for Inertia's start and finish events
+    this.$inertia.on('start', () => {
+      this.loading = true;
+    });
+    const reloadPage = this.$page.props.reloadPage;
+        if (reloadPage) {
+            // Reload the page if necessary
+            window.location.reload();
+            // reloadPage =false; 
+        }
+
+    this.$inertia.on('finish', () => {
+      this.loading = false;
+    });
+
+
+
+  },
+  created(){
+    
+const page = usePage()
+    console.log(page.url)
+  }
 };
 </script>
 
 <template>
      <Head :title="title" >
-        <!-- Preload critical CSS files -->
-    <!-- <link rel="preload" href="/assets/adminassets/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
-    <!-- <link rel="preload" href="/assets/adminassets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
-    
-    <!-- Fallback for browsers that do not support preload -->
+
 
     </Head>
   <div class="container-fluid position-relative d-flex p-0">
+
     <!-- Spinner Start -->
-    <!-- <div
-      v-if="this.$isLoading()"
+    <div v-if="loading"
+      
       id="spinner"
       class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
     >
@@ -74,7 +109,7 @@ export default {
       >
         <span class="sr-only">Loading...</span>
       </div>
-    </div> -->
+    </div>
     <!-- Spinner End -->
 
     <!-- Sidebar Start -->
@@ -115,15 +150,17 @@ export default {
           </div>
         </div>
         <div class="navbar-nav w-100">
-          <Link :href="'/dashboard'" class="nav-item nav-link " :class="{ active: isActive('dashboard') }"
+          <Link :href="'/admin/dashboard'" class="nav-item nav-link " :class="{ active: isActive('admin.dashboard') }"
             ><i class="fa fa-tachometer-alt me-2" ></i>Dashboard</Link
           >
           <Link :href="'/'" class="nav-item nav-link" 
             ><i class="fa fa-home me-2"></i>Home</Link
           >
-          <Link :href="'/user'" class="nav-item nav-link"   :class="{ active: isActive('user') }"
+          <Link :href="'/admin/user'" class="nav-item nav-link"   :class="{ active: isActive('admin.user') }"
             ><i class="fa fa-user me-2"></i>User Manage</Link
           >
+
+          {{route().current() }} 
           <!-- <router-link to="/admin/dashboard" class="nav-item nav-link " :class="{
               active: this.$route.path === '/admin/dashboard',
             }"
@@ -199,7 +236,7 @@ export default {
 </template>
 
 <style scoped>
-@import "./../../css/admin.css";
+/* @import "./../../css/admin.css"; */
 /* @import "./../../assets/main.css"; */
 </style>
 

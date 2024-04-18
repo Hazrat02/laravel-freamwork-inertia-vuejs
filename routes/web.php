@@ -32,11 +32,7 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-Route::get('/user', function () {
-    return Inertia::render('Admin/UserManage', [
 
-    ]);
-})->name('user');
 Route::get('/privacy', function () {
     return Inertia::render('PrivacyPolicy');
 })->name('privacy');
@@ -46,13 +42,11 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    sleep('5');
+    // sleep('5');
     Route::get('/dashboard', function () {
-        if (auth()->user()->role == '0') {
-            return Inertia::render('Admin/Dashboard');
-        }else {
-            return Inertia::render('Dashboard');
-        }
+
+     return Inertia::render('Dashboard');
+        
         
     })->name('dashboard');
 });

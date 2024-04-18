@@ -7,6 +7,7 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import { usePage } from '@inertiajs/vue3'
 
 defineProps({
     title: String,
@@ -26,6 +27,53 @@ const logout = () => {
     router.post(route('logout'));
 };
 </script>
+
+
+<script>
+
+
+export default {
+  data() {
+    return {
+   
+      loading: false,
+    };
+  },
+
+  methods: {
+
+
+  },
+  mounted() {
+    // Listen for Inertia's start and finish events
+    this.$inertia.on('start', () => {
+      this.loading = true;
+    });
+    const reloadPage = this.$page.props.reloadPage;
+        if (reloadPage) {
+            // Reload the page if necessary
+            window.location.reload();
+            // reloadPage =false; 
+        }
+
+    this.$inertia.on('finish', () => {
+      this.loading = false;
+    });
+
+
+
+  },
+  created(){
+    
+
+    const page = usePage()
+    console.log(page.url)
+  }
+  
+};
+</script>
+
+
 
 <template>
     <div>

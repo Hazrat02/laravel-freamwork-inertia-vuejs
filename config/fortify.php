@@ -74,7 +74,11 @@ return [
     |
     */
 
-    'home' => RouteServiceProvider::HOME,
+    // 'home' => RouteServiceProvider::HOME,
+    'home' => RouteServiceProvider::ADMIN,
+
+    // 'home' => '/redirect', 
+
 
     /*
     |--------------------------------------------------------------------------

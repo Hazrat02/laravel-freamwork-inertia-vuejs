@@ -23,10 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Inertia::share('asset', function () {
-            return function ($path) {
-                return asset($path);
-            };
-        });
+    
     }
 }

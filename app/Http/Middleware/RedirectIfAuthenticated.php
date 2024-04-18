@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Middleware;
-
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
@@ -17,16 +16,45 @@ class RedirectIfAuthenticated
      * @param  string|null  ...$guards
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, ...$guards)
-    {
-        $guards = empty($guards) ? [null] : $guards;
+    // public function handle(Request $request, Closure $next, ...$guards)
+    // {
+    //     // $guards = empty($guards) ? [null] : $guards;
 
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
-            }
-        }
+    //     // foreach ($guards as $guard) {
+    //     //     if (Auth::guard($guard)->check()) {
+                
+    //     //         if (auth()->user()->role == '0') {
+    //     //             return redirect(RouteServiceProvider::ADMIN);
+    //     //         } else {
+    //     //             return redirect(RouteServiceProvider::HOME);
+    //     //         }
+                
+    //     //         // dd('fsdsf');
+           
+    //     //     }
+    //     // }
 
-        return $next($request);
-    }
+    //     // return $next($request);
+
+
+
+    // }
+
+
+    public function handle($request, Closure $next, $guard = null){
+        if (Auth::guard($guard)->check()){
+            
+        //   if(Auth::user()->role === '0'){
+               
+        //        return redirect(RouteServiceProvider::ADMIN);
+        //   }
+        //   if(Auth::user()->role === '1'){
+        //     return redirect(RouteServiceProvider::HOME);
+        //   }
+
+        return redirect(RouteServiceProvider::ADMIN);
+      
+       }
+       return $next($request);
+}
 }
